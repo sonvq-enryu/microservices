@@ -1,0 +1,9 @@
+server:
+  port: 8761
+  http2:
+    enabled: true
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
