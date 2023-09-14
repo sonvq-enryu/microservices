@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+./docker/pgadmin/*
+./docker/pgadmin/pgadmin4.db
+./docker/postgres/data/*
