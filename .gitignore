@@ -41,3 +41,5 @@ out/
 ./docker/postgres/data/*
 
 *.log
+*.gz
+*.db
