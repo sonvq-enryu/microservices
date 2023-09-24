@@ -7,3 +7,12 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
 
+logging:
+  file:
+    path: service-discovery/logs
+    name: ${logging.file.path}/eureka.log
+  pattern:
+    console: "%d %-5level [%thread] %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    enryu.microservices.servicediscovery: DEBUG

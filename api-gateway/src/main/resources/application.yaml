@@ -4,12 +4,17 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: customer
-          uri: lb://PRODUCT
+        - id: orders
+          uri: http://localhost:8111
           predicates:
-            - Path=/api/v1/products/**
+            - Path=/api/v1/orders/**
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
   application:
     name: api-gateway
+
 
 eureka:
   client:
@@ -21,3 +26,14 @@ server:
   http2:
     enabled: true
   port: 8080
+
+logging:
+  file:
+    path: api-gateway/logs
+    name: ${logging.file.path}/api-gateway.log
+  pattern:
+    console: "%d %-5level [%thread] %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    reactor.netty: INFO
+    org.springframework.cloud.gateway: TRACE

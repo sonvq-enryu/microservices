@@ -12,6 +12,17 @@ spring:
       minimum-idle: 5
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 20
+        order_updates: true
+        order_inserts: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
@@ -22,3 +33,26 @@ server:
   http2:
     enabled: true
   port: 8112
+
+logging:
+  file:
+    path: product-service/logs
+    name: ${logging.file.path}/product-service.log
+  pattern:
+    console: "%d %-5level [%thread] %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    enryu.microservices.productservice: DEBUG
+
+broker:
+  rabbit:
+    queue:
+      order: order-queue
+      product: product-queue
+    exchange:
+      topic:
+        order: order-exchange
+        product: product-exchange
+    routing_key:
+      order: order-routing-key
+      product: product-routing-key
